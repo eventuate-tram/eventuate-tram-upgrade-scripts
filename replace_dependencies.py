@@ -1,11 +1,11 @@
+import sys
 import os
 from os import walk
 import itertools
 
-MODULE_REPLACEMENTS = "module.replacements"
-CLASS_REPLACEMENTS = "class.replacements"
-
-PROJECT_FOLDER = "eventuate-examples-java-customers-and-orders"
+PROJECT_FOLDER = os.getcwd()
+MODULE_REPLACEMENTS = os.path.join(sys.path[0], "module.replacements")
+CLASS_REPLACEMENTS = os.path.join(sys.path[0], "class.replacements")
 
 def get_files_in_folder_and_subfolders(folder):
 	return list(
@@ -50,7 +50,6 @@ def replace_dependencies(files, replacements, prefix = None, postfix = None):
 				replacement = prefix + replacement + postfix
 			content = content.replace(original, replacement)
 		if (content != new_content): write_file(file, content)
-
 
 files = get_files_in_folder_and_subfolders(PROJECT_FOLDER)
 
