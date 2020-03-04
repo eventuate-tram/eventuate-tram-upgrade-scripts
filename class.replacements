@@ -65,3 +65,4 @@ io.eventuate.common.jdbc.EventuateSchemaConfiguration->io.eventuate.common.sprin
 io.eventuate.tram.consumer.common.TramConsumerCommonConfiguration->io.eventuate.tram.spring.consumer.common.TramConsumerCommonConfiguration
 io.eventuate.tram.cloudcontractsupport.EventuateContractVerifierConfiguration->io.eventuate.tram.spring.cloudcontractsupport.EventuateContractVerifierConfiguration
 io.eventuate.tram.events.common.TramEventsCommonAutoConfiguration->io.eventuate.tram.spring.events.common.TramEventsCommonAutoConfiguration
+io.eventuate.javaclient.driver.EventuateDriverConfiguration->io.eventuate.local.java.spring.javaclient.driver.EventuateDriverConfiguration

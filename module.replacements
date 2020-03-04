@@ -29,3 +29,4 @@ eventuate-tram-consumer-kafka->eventuate-tram-spring-consumer-kafka
 eventuate-client-java-jdbc->eventuate-client-java-spring-jdbc
 eventuate-tram-jdbc-kafka->eventuate-tram-spring-jdbc-kafka
 eventuate-tram-cloud-sleuth-integration->eventuate-tram-spring-cloud-sleuth-integration
+eventuate-jpa-sagas-framework->eventuate-tram-sagas-spring-jpa-framework
