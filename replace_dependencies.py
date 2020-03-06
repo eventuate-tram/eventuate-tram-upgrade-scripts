@@ -24,8 +24,10 @@ def load_replacements(file):
 	f.close()
 	replacement_map = {}
 	for replacement in replacements:
-		r = replacement.replace("\n", "").split("->")
-		replacement_map[r[0]] = r[1]
+		replacement = replacement.replace("\n", "")
+		if replacement:
+			r = replacement.split("->")
+			replacement_map[r[0]] = r[1]
 	return replacement_map
 
 def filter_files(files, extension):
