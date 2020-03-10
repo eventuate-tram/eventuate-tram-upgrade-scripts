@@ -16,6 +16,13 @@ The script does it for you.
 
 ##### how to use
 
-1. git clone https://github.com/eventuate-tram/eventuate-tram-upgrade-scripts.git
-2. cd <root-directory-of-eventuate-based-project-to-update>
-3. python <eventuate-tram-upgrade-scripts>/replace_dependencies.py
+`1. git clone https://github.com/eventuate-tram/eventuate-tram-upgrade-scripts.git`
+
+`2. cd <root-directory-of-eventuate-based-project-to-update>`
+
+`3. python <eventuate-tram-upgrade-scripts>/replace_dependencies.py`
+
+It also supports updating of micronaut applications by passing MICRONAUT option.
+To update micronaut application step 3 should be changed to:
+
+`python <eventuate-tram-upgrade-scripts>/replace_dependencies.py MICRONAUT`
