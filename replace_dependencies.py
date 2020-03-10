@@ -5,8 +5,15 @@ import itertools
 
 PROJECT_FOLDER = os.getcwd()
 
-MODULE_REPLACEMENTS = os.path.join(sys.path[0], "module.replacements")
-CLASS_REPLACEMENTS = os.path.join(sys.path[0], "class.replacements")
+MODULE_REPLACEMENTS_FILE = "module.replacements"
+CLASS_REPLACEMENTS_FILE = "class.replacements"
+
+if (len(sys.argv) > 1 and sys.argv[1] == "MICRONAUT"):
+	MODULE_REPLACEMENTS_FILE = "module.micronaut.replacements"
+	CLASS_REPLACEMENTS_FILE = "class.micronaut.replacements"
+
+MODULE_REPLACEMENTS = os.path.join(sys.path[0], MODULE_REPLACEMENTS_FILE)
+CLASS_REPLACEMENTS = os.path.join(sys.path[0], CLASS_REPLACEMENTS_FILE)
 
 GRADLE_PROPERTIES = os.path.join(os.getcwd(), "gradle.properties")
 LIBRARY_VERSIONS = os.path.join(sys.path[0], "library.versions")
