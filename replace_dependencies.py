@@ -6,13 +6,16 @@ import itertools
 PROJECT_FOLDER = os.getcwd()
 
 MODULE_REPLACEMENTS_FILE = "module.replacements"
+MANUAL_MODULE_REPLACEMENTS_FILE = "manual.module.replacements"
 CLASS_REPLACEMENTS_FILE = "class.replacements"
 
 if (len(sys.argv) > 1 and sys.argv[1] == "MICRONAUT"):
 	MODULE_REPLACEMENTS_FILE = "module.micronaut.replacements"
+	MANUAL_MODULE_REPLACEMENTS_FILE = "manual.micronaut.module.replacements"
 	CLASS_REPLACEMENTS_FILE = "class.micronaut.replacements"
 
 MODULE_REPLACEMENTS = os.path.join(sys.path[0], MODULE_REPLACEMENTS_FILE)
+MANUAL_MODULE_REPLACEMENTS = os.path.join(sys.path[0], MANUAL_MODULE_REPLACEMENTS_FILE)
 CLASS_REPLACEMENTS = os.path.join(sys.path[0], CLASS_REPLACEMENTS_FILE)
 
 GRADLE_PROPERTIES = os.path.join(os.getcwd(), "gradle.properties")
@@ -74,9 +77,20 @@ def update_libraries():
 		for lib in library_versions:
 			if (line.startswith(lib + "=")): line = lib + "=" + library_versions[lib] + "\n"
 		new_lines.append(line)
-	f = open(GRADLE_PROPERTIES, "w")
-	f.writelines(new_lines)
-	f.close()
+	if lines != new_lines:
+		f = open(GRADLE_PROPERTIES, "w")
+		f.writelines(new_lines)
+		f.close()
+
+def inspect_dependencies_for_manaul_replacement(files, replacements, prefix, postfix):
+	for file in files:
+		content = read_file(file)
+		for replacement in replacements:
+			if (prefix + replacement + postfix) in content:
+				print("")
+				print("WARNING!")
+				print(file + " : " + replacements[replacement])
+				print("")
 
 files = get_files_in_folder_and_subfolders(PROJECT_FOLDER)
 
@@ -85,6 +99,7 @@ poms = filter_files(files, "pom.xml")
 classes = filter_files(files, ".java")
 
 module_replacements = load_replacements(MODULE_REPLACEMENTS)
+manual_module_replacements = load_replacements(MANUAL_MODULE_REPLACEMENTS)
 class_replacements = load_replacements(CLASS_REPLACEMENTS)
 
 replace_dependencies(gradles, module_replacements, ":", ":")
@@ -92,3 +107,6 @@ replace_dependencies(poms, module_replacements, "<artifactId>", "</artifactId>")
 replace_dependencies(classes, class_replacements)
 
 update_libraries()
+
+inspect_dependencies_for_manaul_replacement(gradles, manual_module_replacements, ":", ":")
+inspect_dependencies_for_manaul_replacement(poms, manual_module_replacements, "<artifactId>", "</artifactId>")
