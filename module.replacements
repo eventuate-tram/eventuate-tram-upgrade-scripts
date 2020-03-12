@@ -29,7 +29,6 @@ eventuate-tram-consumer-kafka->eventuate-tram-spring-consumer-kafka
 eventuate-client-java-jdbc->eventuate-client-java-spring-jdbc
 eventuate-tram-jdbc-kafka->eventuate-tram-spring-jdbc-kafka
 eventuate-tram-cloud-sleuth-integration->eventuate-tram-spring-cloud-sleuth-integration
-eventuate-jpa-sagas-framework->eventuate-tram-sagas-spring-jpa-framework
 eventuate-tram-sagas-simple-dsl->eventuate-tram-sagas-spring-orchestration-simple-dsl
 
 eventuate-common-in-memory-database-spring->eventuate-common-spring-in-memory-database
@@ -65,4 +64,3 @@ eventuate-tram-sagas-in-memory-spring->eventuate-tram-sagas-spring-in-memory
 eventuate-tram-testing-support-spring-cloud-contract->eventuate-tram-spring-testing-support-cloud-contract
 eventuate-messaging-kafka-consumer-spring->eventuate-messaging-kafka-spring-consumer
 eventuate-messaging-kafka-producer-spring->eventuate-messaging-kafka-spring-producer
-

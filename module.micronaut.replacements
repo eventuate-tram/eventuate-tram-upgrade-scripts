@@ -29,3 +29,4 @@ eventuate-messaging-kafka-basic-consumer-micronaut->eventuate-messaging-kafka-mi
 eventuate-client-java-jdbc-micronaut->eventuate-client-java-micronaut-jdbc
 eventuate-tram-sagas-common-micronaut->eventuate-tram-sagas-micronaut-common
 eventuate-tram-messaging-micronaut->eventuate-tram-micronaut-messaging
+eventuate-tram-sagas-simple-dsl->eventuate-tram-sagas-orchestration-simple-dsl

@@ -26,3 +26,9 @@ It also supports updating of micronaut applications by passing MICRONAUT option.
 To update micronaut application step 3 should be changed to:
 
 `python <eventuate-tram-upgrade-scripts>/replace_dependencies.py MICRONAUT`
+
+##### required manual changes
+
+The script cannot replace removed `eventuate-jpa-sagas-framework` dependency.
+It should be replaced manualy by eventuate-tram-sagas-<spring/micronaut>-orchestration and/or eventuate-tram-sagas-<spring/micronaut>-participant depending on used API.
+If that dependency found during dependency replacements, warning will be printed.

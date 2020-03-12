@@ -1,0 +1,1 @@
+eventuate-jpa-sagas-framework->eventuate-jpa-sagas-framework is removed, it should be replaced by eventuate-tram-sagas-spring-orchestration and/or eventuate-tram-sagas-spring-participant depending on used API
