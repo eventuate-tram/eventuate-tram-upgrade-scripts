@@ -1,0 +1,37 @@
+= eventuate-tram-upgrade-scripts
+
+The latest versions of https://github.com/eventuate-local/eventuate-local[Eventuate Local] and https://github.com/eventuate-tram/eventuate-tram-core[Eventuate Tram] now support both Spring Boot and https://micronaut.io/[Micronaut].
+Adding support for Micronaut required changing the names of both Maven artifacts and packages.
+As a result, in order to upgrade to these versions, you must edit your source code.
+
+== Automating editing with replace_dependencies.py
+
+`replace_dependencies.py` is a python script that makes the necessary changes for you.
+It edits the following files:
+
+* Maven `pom.xml` and `build.gradle` - changes artifact names
+* `gradle.properties` - updates the artifact versions, assuming they use the same naming conventions as the Eventuate example applications
+* `*.java` - renames imported packages and classes
+
+=== What it doesn't handle:
+
+The script cannot replace the removed `eventuate-jpa-sagas-framework` artifact.
+Depending on the role the service plays in a saga, it should be replaced manually by one or both of the following:
+
+* `eventuate-tram-sagas-<spring/micronaut>-orchestration`
+* `eventuate-tram-sagas-<spring/micronaut>-participant`
+
+If that dependency found during dependency replacements, the script prints a warning.
+
+=== How to use
+
+To update a Spring Boot-based application, perform the following steps:
+
+. `git clone https://github.com/eventuate-tram/eventuate-tram-upgrade-scripts.git`
+. `cd <root-directory-of-eventuate-based-project-to-update>`
+. `python <eventuate-tram-upgrade-scripts>/replace_dependencies.py`
+
+`replace_dependencies.py` can also update Eventuate/Micronaut applications by passing MICRONAUT option.
+To update micronaut application step 3 should be changed to:
+
+`python <eventuate-tram-upgrade-scripts>/replace_dependencies.py MICRONAUT`
