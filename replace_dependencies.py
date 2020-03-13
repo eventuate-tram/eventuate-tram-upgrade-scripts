@@ -1,7 +1,9 @@
 import sys
 import os
+from os import path
 from os import walk
 import itertools
+import re
 
 PROJECT_FOLDER = os.getcwd()
 
@@ -19,6 +21,7 @@ MANUAL_MODULE_REPLACEMENTS = os.path.join(sys.path[0], MANUAL_MODULE_REPLACEMENT
 CLASS_REPLACEMENTS = os.path.join(sys.path[0], CLASS_REPLACEMENTS_FILE)
 
 GRADLE_PROPERTIES = os.path.join(os.getcwd(), "gradle.properties")
+POM_WITH_VERSIONS = os.path.join(os.getcwd(), "pom.xml")
 LIBRARY_VERSIONS = os.path.join(sys.path[0], "library.versions")
 
 def get_files_in_folder_and_subfolders(folder):
@@ -29,9 +32,7 @@ def get_files_in_folder_and_subfolders(folder):
 		)
 
 def load_replacements(file):
-	f = open(file, "r")
-	replacements = f.readlines()
-	f.close()
+	replacements = read_lines_from_file(file)
 	replacement_map = {}
 	for replacement in replacements:
 		replacement = replacement.replace("\n", "")
@@ -54,6 +55,17 @@ def write_file(file, content):
 	f.write(content)
 	f.close()
 
+def read_lines_from_file(file):
+	f = open(file, "r")
+	lines = f.readlines()
+	f.close()
+	return lines
+
+def write_lines_to_file(file, lines):
+	f = open(file, "w")
+	f.writelines(lines)
+	f.close()
+
 def replace_dependencies(files, replacements, prefix = None, postfix = None):
 	for file in files:
 		content = read_file(file)
@@ -67,20 +79,28 @@ def replace_dependencies(files, replacements, prefix = None, postfix = None):
 			content = content.replace(original, replacement)
 		if (content != new_content): write_file(file, content)
 
-def update_libraries():
+def update_libraries_gradle():
 	library_versions = load_replacements(LIBRARY_VERSIONS)
-	f = open(GRADLE_PROPERTIES, "r")
-	lines = f.readlines()
-	f.close()
+	lines = read_lines_from_file(GRADLE_PROPERTIES)
 	new_lines = []
 	for line in lines:
 		for lib in library_versions:
 			if (line.startswith(lib + "=")): line = lib + "=" + library_versions[lib] + "\n"
 		new_lines.append(line)
-	if lines != new_lines:
-		f = open(GRADLE_PROPERTIES, "w")
-		f.writelines(new_lines)
-		f.close()
+	if lines != new_lines: write_lines_to_file(GRADLE_PROPERTIES, new_lines)
+
+def update_libraries_maven():
+	if not path.exists(POM_WITH_VERSIONS): return
+	library_versions = load_replacements(LIBRARY_VERSIONS)
+	lines = read_lines_from_file(POM_WITH_VERSIONS)
+	new_lines = []
+	for line in lines:
+		for lib in library_versions:
+			match = re.findall(".*<" + lib + ">(.*)</" + lib + ">.*", line)
+			if (match): line = line.replace(match[0], library_versions[lib])
+		new_lines.append(line)
+	if lines != new_lines: write_lines_to_file(POM_WITH_VERSIONS, new_lines)
+
 
 def inspect_dependencies_for_manaul_replacement(files, replacements, prefix, postfix):
 	for file in files:
@@ -106,7 +126,8 @@ replace_dependencies(gradles, module_replacements, ":", ":")
 replace_dependencies(poms, module_replacements, "<artifactId>", "</artifactId>")
 replace_dependencies(classes, class_replacements)
 
-update_libraries()
+update_libraries_gradle()
+update_libraries_maven()
 
 inspect_dependencies_for_manaul_replacement(gradles, manual_module_replacements, ":", ":")
 inspect_dependencies_for_manaul_replacement(poms, manual_module_replacements, "<artifactId>", "</artifactId>")
