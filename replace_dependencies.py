@@ -5,9 +5,9 @@ import itertools
 
 PROJECT_FOLDER = os.getcwd()
 
-MODULE_REPLACEMENTS_FILE = "module.replacements"
-MANUAL_MODULE_REPLACEMENTS_FILE = "manual.module.replacements"
-CLASS_REPLACEMENTS_FILE = "class.replacements"
+MODULE_REPLACEMENTS_FILE = "module.springboot.replacements"
+MANUAL_MODULE_REPLACEMENTS_FILE = "manual.springboot.module.replacements"
+CLASS_REPLACEMENTS_FILE = "class.springboot.replacements"
 
 if (len(sys.argv) > 1 and sys.argv[1] == "MICRONAUT"):
 	MODULE_REPLACEMENTS_FILE = "module.micronaut.replacements"
@@ -94,7 +94,7 @@ def inspect_dependencies_for_manaul_replacement(files, replacements, prefix, pos
 
 files = get_files_in_folder_and_subfolders(PROJECT_FOLDER)
 
-gradles = filter_files(files, ".gradle")
+gradles = filter_files(files, "build.gradle")
 poms = filter_files(files, "pom.xml")
 classes = filter_files(files, ".java")
 
