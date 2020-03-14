@@ -1,4 +1,4 @@
-= eventuate-tram-upgrade-scripts
+= eventuate-upgrade-scripts
 
 The latest versions of https://github.com/eventuate-local/eventuate-local[Eventuate Local] and https://github.com/eventuate-tram/eventuate-tram-core[Eventuate Tram] now support both Spring Boot and https://micronaut.io/[Micronaut].
 Adding support for Micronaut required changing the names of both Maven artifacts and packages.
@@ -27,11 +27,11 @@ If that dependency found during dependency replacements, the script prints a war
 
 To update a Spring Boot-based application, perform the following steps:
 
-. `git clone https://github.com/eventuate-tram/eventuate-tram-upgrade-scripts.git`
+. `git clone https://github.com/eventuate-tram/eventuate-upgrade-scripts.git`
 . `cd <root-directory-of-eventuate-based-project-to-update>`
-. `python <eventuate-tram-upgrade-scripts>/replace_dependencies.py`
+. `python <eventuate-upgrade-scripts>/replace_dependencies.py`
 
 `replace_dependencies.py` can also update Eventuate/Micronaut applications by passing MICRONAUT option.
 To update micronaut application step 3 should be changed to:
 
-`python <eventuate-tram-upgrade-scripts>/replace_dependencies.py MICRONAUT`
+`python <eventuate-upgrade-scripts>/replace_dependencies.py MICRONAUT`
