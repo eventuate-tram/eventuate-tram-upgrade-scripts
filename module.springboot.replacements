@@ -64,3 +64,16 @@ eventuate-tram-sagas-in-memory-spring->eventuate-tram-sagas-spring-in-memory
 eventuate-tram-testing-support-spring-cloud-contract->eventuate-tram-spring-testing-support-cloud-contract
 eventuate-messaging-kafka-consumer-spring->eventuate-messaging-kafka-spring-consumer
 eventuate-messaging-kafka-producer-spring->eventuate-messaging-kafka-spring-producer
+
+eventuate-messaging-rabbitmq-integration-tests->eventuate-messaging-rabbitmq-spring-integration-tests
+eventuate-messaging-rabbitmq-consumer->eventuate-messaging-rabbitmq-spring-consumer
+eventuate-messaging-rabbitmq-producer->eventuate-messaging-rabbitmq-spring-producer
+eventuate-messaging-activemq-producer->eventuate-messaging-activemq-spring-producer
+eventuate-messaging-activemq-integration-tests->eventuate-messaging-activemq-spring-integration-tests
+eventuate-messaging-activemq-common->eventuate-messaging-activemq-spring-common
+eventuate-messaging-activemq-consumer->eventuate-messaging-activemq-spring-consumer
+eventuate-messaging-redis-consumer->eventuate-messaging-redis-spring-consumer
+eventuate-messaging-redis-integration-tests->eventuate-messaging-redis-spring-integration-tests
+eventuate-messaging-redis-coordination-leadership->eventuate-messaging-redis-spring-coordination-leadership
+eventuate-messaging-redis-common->eventuate-messaging-redis-spring-common
+eventuate-messaging-redis-producer->eventuate-messaging-redis-spring-producer
