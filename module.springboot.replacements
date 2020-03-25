@@ -1,3 +1,4 @@
+eventuate-tram-optimistic-locking->eventuate-tram-spring-optimistic-locking
 eventuate-tram-testing-support-cloud-contract->eventuate-tram-spring-testing-support-cloud-contract
 eventuate-messaging-kafka-consumer->eventuate-messaging-kafka-spring-consumer
 eventuate-tram-sagas-testing-support->eventuate-tram-sagas-spring-testing-support

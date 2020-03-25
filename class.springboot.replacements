@@ -1,3 +1,5 @@
+io.eventuate.tram.optimisticlocking.OptimisticLockingDecoratorConfiguration->io.eventuate.tram.spring.optimisticlocking.OptimisticLockingDecoratorConfiguration
+io.eventuate.tram.optimisticlocking.OptimisticLockingDecorator->io.eventuate.tram.spring.optimisticlocking.OptimisticLockingDecorator
 io.eventuate.local.java.jdbc.jdbckafkastore.AbstractJdbcEventMetadataAutoConfigurationIntegrationSyncTest->io.eventuate.local.java.spring.jdbc.jdbckafkastore.AbstractJdbcEventMetadataAutoConfigurationIntegrationSyncTest
 io.eventuate.tram.events.subscriber.TramEventSubscriberConfiguration->io.eventuate.tram.spring.events.subscriber.TramEventSubscriberConfiguration
 io.eventuate.javaclient.jdbc.EventuateJdbcAccessImplTest->io.eventuate.javaclient.spring.jdbc.EventuateJdbcAccessImplTest
