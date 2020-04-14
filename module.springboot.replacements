@@ -44,7 +44,6 @@ eventuate-tram-sagas-orchestration-spring->eventuate-tram-sagas-spring-orchestra
 eventuate-tram-producer-jdbc-spring->eventuate-tram-spring-producer-jdbc
 eventuate-tram-sagas-testing-support-spring->eventuate-tram-sagas-spring-testing-support
 eventuate-messaging-kafka-basic-consumer-spring->eventuate-messaging-kafka-spring-basic-consumer
-eventuate-local-java-jdbc->eventuate-local-java-jdbc
 eventuate-common-jdbc-spring-common->eventuate-common-common-spring-jdbc
 eventuate-tram-sagas-participant-spring->eventuate-tram-sagas-spring-participant
 eventuate-tram-jdbc-kafka-spring->eventuate-tram-spring-jdbc-kafka
