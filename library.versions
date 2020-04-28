@@ -10,4 +10,4 @@ eventuateTramVersion->0.24.0.RELEASE
 eventuateClientVersion->0.23.0.RELEASE
 eventuateLocalVersion->0.32.0.RELEASE
 eventuateTramSagasVersion->0.13.0.RELEASE
-eventuateCdcImageVersion->0.6.0.RC4
+eventuateCdcImageVersion->0.6.0.RELEASE
