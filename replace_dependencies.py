@@ -10,6 +10,8 @@ PROJECT_FOLDER = os.getcwd()
 MODULE_REPLACEMENTS_FILE = "module.springboot.replacements"
 MANUAL_MODULE_REPLACEMENTS_FILE = "manual.springboot.module.replacements"
 CLASS_REPLACEMENTS_FILE = "class.springboot.replacements"
+ARTIFACT_GROUP_REPLACEMENTS_FILE = "artifact.group.replacements"
+VERSION_REPLACEMENTS_FILE = "version.replacements"
 
 if (len(sys.argv) > 1 and sys.argv[1] == "MICRONAUT"):
 	MODULE_REPLACEMENTS_FILE = "module.micronaut.replacements"
@@ -19,6 +21,8 @@ if (len(sys.argv) > 1 and sys.argv[1] == "MICRONAUT"):
 MODULE_REPLACEMENTS = os.path.join(sys.path[0], MODULE_REPLACEMENTS_FILE)
 MANUAL_MODULE_REPLACEMENTS = os.path.join(sys.path[0], MANUAL_MODULE_REPLACEMENTS_FILE)
 CLASS_REPLACEMENTS = os.path.join(sys.path[0], CLASS_REPLACEMENTS_FILE)
+ARTIFACT_GROUP_REPLACEMENTS = os.path.join(sys.path[0], ARTIFACT_GROUP_REPLACEMENTS_FILE)
+VERSION_REPLACEMENTS = os.path.join(sys.path[0], VERSION_REPLACEMENTS_FILE)
 
 GRADLE_PROPERTIES = os.path.join(os.getcwd(), "gradle.properties")
 POM_WITH_VERSIONS = os.path.join(os.getcwd(), "pom.xml")
@@ -73,9 +77,12 @@ def replace_dependencies(files, replacements, prefix = None, postfix = None):
 		for k in replacements:
 			original = k
 			replacement = replacements[k]
-			if prefix and postfix: 
-				original = prefix + original + postfix
-				replacement = prefix + replacement + postfix
+			if prefix: 
+				original = prefix + original
+				replacement = prefix + replacement
+			if postfix: 
+				original = original + postfix
+				replacement = replacement + postfix
 			content = content.replace(original, replacement)
 		if (content != new_content): write_file(file, content)
 
@@ -121,10 +128,16 @@ classes = filter_files(files, ".java")
 module_replacements = load_replacements(MODULE_REPLACEMENTS)
 manual_module_replacements = load_replacements(MANUAL_MODULE_REPLACEMENTS)
 class_replacements = load_replacements(CLASS_REPLACEMENTS)
+artifact_group_replacements = load_replacements(ARTIFACT_GROUP_REPLACEMENTS)
+version_replacements = load_replacements(VERSION_REPLACEMENTS)
 
 replace_dependencies(gradles, module_replacements, ":", ":")
 replace_dependencies(poms, module_replacements, "<artifactId>", "</artifactId>")
 replace_dependencies(classes, class_replacements)
+replace_dependencies(gradles, artifact_group_replacements, postfix = ":")
+replace_dependencies(poms, artifact_group_replacements, "<groupId>", "</groupId>")
+replace_dependencies(gradles, version_replacements, prefix = ":$")
+replace_dependencies(poms, version_replacements, "<version>${", "}</version>")
 
 update_libraries_gradle()
 update_libraries_maven()
